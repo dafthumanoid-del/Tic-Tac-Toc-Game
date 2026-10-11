@@ -16,7 +16,7 @@ namespace Tic_Tac_Toe_Game
                 dotBoard[i] = ".";
             }
 
-            int[,] winconditions = new int[,]                                                      
+            int[,] winconditions = new int[,] // 승리 조건                                               
             {
                 {0, 1, 2},
                 {3, 4, 5},
@@ -31,6 +31,7 @@ namespace Tic_Tac_Toe_Game
             string playerX = "플레이어 X";
             string playerO = "플레이어 O";
             bool playerWin = false;
+            bool playerdraw = false;
             bool playerTurn = true;
             string currentPlayer = playerTurn ? "X" : "O";
 
@@ -62,6 +63,12 @@ namespace Tic_Tac_Toe_Game
                 {
                     Console.WriteLine();
                     Console.WriteLine($"플레이어 {currentPlayer} 승리!");
+                    break;
+                }
+                else if (playerdraw)
+                {
+                    Console.WriteLine();
+                    Console.WriteLine($"무승부입니다!");
                     break;
                 }
 
@@ -108,6 +115,22 @@ namespace Tic_Tac_Toe_Game
                     {
                         playerWin = true;
                         break;
+                    }
+                }
+                if (!playerWin)
+                {
+                    bool isFull = true;
+                    foreach (string cell in dotBoard)
+                    {
+                        if (cell == ".")
+                        {
+                            isFull = false;
+                            break;
+                        }
+                    }
+                    if (isFull)
+                    {
+                        playerdraw = true;
                     }
                 }
             }
